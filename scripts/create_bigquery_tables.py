@@ -1,58 +1,60 @@
-import os
-from typing import Optional
+# File: scripts/create_bigquery_tables.py
+# Purpose: Create dataset and tables in BigQuery using schema SQL files
 
+import os
 from google.api_core.exceptions import NotFound
 from google.cloud import bigquery
 from google.cloud.bigquery import Dataset
-from dotenv import load_dotenv
+from settings import get_bigquery_client, PROJECT_ID, BQ_DATASET_NAME
 
-#load environment variables
-load_dotenv()
-
-PROJECT_ID: Optional[str] = os.getenv("GCP_PROJECT_ID")
-DATASET_ID: Optional[str] = os.getenv("BQ_DATASET_NAME")
-SQL_DIR: str = "sql"
-
-def get_client() -> bigquery.Client:
-    """Initializes the BigQuery client using the provided project ID."""
-    if PROJECT_ID is None:
-        raise ValueError("GCP_PROJECT_ID is not set in the environment.")
-    return bigquery.Client(project=PROJECT_ID)
+SQL_DIR: str = os.path.join(os.path.dirname(__file__), "../sql")
 
 
 def ensure_dataset(client: bigquery.Client) -> None:
-    """Creates the dataset if it doesn't exist."""
-    dataset_ref = Dataset(f"{PROJECT_ID}.{DATASET_ID}")
+    """
+    Creates the dataset in BigQuery if it doesn't exist.
+
+    Args:
+        client (bigquery.Client): BigQuery client instance.
+    """
+    dataset_ref = Dataset(f"{PROJECT_ID}.{BQ_DATASET_NAME}")
     try:
         client.get_dataset(dataset_ref)
-        print(f"Dataset {DATASET_ID} already exists.")
+        print(f"Dataset already exists: {BQ_DATASET_NAME}")
     except NotFound:
         client.create_dataset(dataset_ref)
-        print(f"Created dataset {DATASET_ID}.")
+        print(f"Created dataset: {BQ_DATASET_NAME}")
 
 
 def execute_sql(client: bigquery.Client, sql_dir: str) -> None:
-    """Executes the SQL queries against the BigQuery dataset."""
+    """
+    Executes all .sql files in the given directory to create BigQuery tables.
+
+    Args:
+        client (bigquery.Client): BigQuery client instance.
+        sql_dir (str): Path to the directory containing .sql files.
+    """
     for filename in sorted(os.listdir(sql_dir)):
         if filename.endswith(".sql"):
             file_path = os.path.join(sql_dir, filename)
             with open(file_path, "r") as sql_file:
                 query = sql_file.read()
-            print(f"Executing SQL query: {query}")
+            print(f"Executing: {filename}")
             try:
                 client.query(query).result()
-                print(f"Successfully executed SQL query: {query}\n")
+                print(f"Success: {filename}\n")
             except Exception as e:
-                print(f"Failed to execute SQL query: {query} with error {e}\n")
+                print(f"Failed: {filename} with error: {e}\n")
 
 
-def main():
-    """Main execution flow for creating dataset and tables."""
+def main() -> None:
+    """Main execution entrypoint to set up BigQuery tables."""
     print("Creating BigQuery tables...")
-    client = get_client()
+    client = get_bigquery_client()
     ensure_dataset(client)
     execute_sql(client, SQL_DIR)
-    print("Done.")
+    print("All tables created.")
+
 
 if __name__ == "__main__":
     main()

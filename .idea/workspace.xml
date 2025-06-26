@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c78bce8f-1174-42b7-ba2a-a77b3b570b9a" name="Changes" comment="" />
+    <list default="true" id="c78bce8f-1174-42b7-ba2a-a77b3b570b9a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/notebooks/ab_test_analysis.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/run_ab_queries.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/simulate_events.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/conversion_metrics.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/pre-post-windowing.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql/rollout_assignment.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/create_bigquery_tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/create_bigquery_tables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/load_to_bigquery.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/load_to_bigquery.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/segment_kpis.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/segment_kpis.sql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +25,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
-        <option value="SQL File" />
         <option value="Jupyter Notebook" />
+        <option value="SQL File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -48,6 +60,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -87,7 +100,10 @@
       <option name="presentableId" value="Default" />
       <updated>1749381675567</updated>
       <workItem from="1749381676775" duration="14669000" />
-      <workItem from="1749501103160" duration="9602000" />
+      <workItem from="1749501103160" duration="9691000" />
+      <workItem from="1749643379351" duration="3477000" />
+      <workItem from="1749943228106" duration="9000" />
+      <workItem from="1750159319275" duration="6550000" />
     </task>
     <servers />
   </component>
